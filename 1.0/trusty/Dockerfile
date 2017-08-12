@@ -39,7 +39,6 @@ RUN apt-get -y update \
     libapache2-mod-php5 \
     php-pear \
     php-db \
-    git \
     curl \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
@@ -49,6 +48,7 @@ RUN apt-get -y update \
 RUN cd /srv \
  && curl --silent -L http://www.nominatim.org/release/Nominatim-$NOMINATIM_VERSION.tar.bz2 -o v$NOMINATIM_VERSION.tar.bz2 \
  && tar xf v$NOMINATIM_VERSION.tar.bz2 \
+ && rm v$NOMINATIM_VERSION.tar.bz2 \
  && mv Nominatim-$NOMINATIM_VERSION nominatim \
  && cd nominatim \
  && mkdir build \
