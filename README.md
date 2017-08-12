@@ -1,4 +1,4 @@
-# Nominatim for Kubernetes
+# nominatim-docker
 [![](https://images.microbadger.com/badges/image/peterevans/nominatim.svg)](https://microbadger.com/images/peterevans/nominatim)
 [![Build Status](https://travis-ci.org/peter-evans/nominatim-docker.svg?branch=master)](https://travis-ci.org/peter-evans/nominatim-docker)
 
