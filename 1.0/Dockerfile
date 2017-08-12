@@ -20,7 +20,7 @@ RUN apt-get -y update \
 # Install packages
 RUN apt-get -y update \
  && apt-get install -y -qq --no-install-recommends \
-	build-essential \
+    build-essential \
     cmake \
     g++ \
     libboost-dev \
@@ -45,7 +45,7 @@ RUN apt-get -y update \
     php-db \
     php-intl \
     curl \
-	sudo \
+    sudo \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && rm -rf /tmp/* /var/tmp/*
