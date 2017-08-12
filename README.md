@@ -7,7 +7,7 @@ Docker image for [Nominatim](https://github.com/openstreetmap/Nominatim), an ope
 ## Supported tags and respective `Dockerfile` links
 
 - [`1.0.0`, `1.0`, `latest`  (*1.0/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/1.0)
-- [`1.0.0-trusty`, `1.0-trusty`, `trusty`  (*1.0/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/1.0/trusty)
+- [`1.0.0-trusty`, `1.0-trusty`, `trusty`  (*1.0/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/1.0/trusty)
 
 ## Usage
 Pass the `NOMINATIM_PBF_URL` environment variable to the container referencing the URL of your PBF file:
