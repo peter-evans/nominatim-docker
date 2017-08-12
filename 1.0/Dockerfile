@@ -11,6 +11,9 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
 RUN apt-get -y update \
  && apt-get install -y -qq --no-install-recommends locales \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* \
+ && rm -rf /tmp/* /var/tmp/* \
  && locale-gen en_US.UTF-8 \
  && update-locale LANG=en_US.UTF-8
 
@@ -41,7 +44,6 @@ RUN apt-get -y update \
     php-pear \
     php-db \
     php-intl \
-    git \
     curl \
 	sudo \
  && apt-get clean \
@@ -52,6 +54,7 @@ RUN apt-get -y update \
 RUN cd /srv \
  && curl --silent -L http://www.nominatim.org/release/Nominatim-$NOMINATIM_VERSION.tar.bz2 -o v$NOMINATIM_VERSION.tar.bz2 \
  && tar xf v$NOMINATIM_VERSION.tar.bz2 \
+ && rm v$NOMINATIM_VERSION.tar.bz2 \
  && mv Nominatim-$NOMINATIM_VERSION nominatim \
  && cd nominatim \
  && mkdir build \
