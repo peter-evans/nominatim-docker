@@ -1,12 +1,22 @@
 services:
   - docker
 
-install:
-  - docker build -t nominatim:xenial ./1.0
-  - docker run -d -p 8080:8080 -e NOMINATIM_PBF_URL='http://download.geofabrik.de/asia/maldives-latest.osm.pbf' --name nominatim-xenial nominatim:xenial
-  - docker build -t nominatim:trusty ./1.0/trusty
-  - docker run -d -p 8081:8080 -e NOMINATIM_PBF_URL='http://download.geofabrik.de/asia/maldives-latest.osm.pbf' --name nominatim-trusty nominatim:trusty
+env:
+  global:
+    - RELEASE_VERSION=1.1
+    - NOMINATIM_PBF_URL="http://download.geofabrik.de/asia/maldives-latest.osm.pbf"
 
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+  - docker --version
+
+install:
+  - docker build -t nominatim:xenial ./$RELEASE_VERSION
+  - docker run -d -p 8080:8080 -e NOMINATIM_PBF_URL=$NOMINATIM_PBF_URL --name nominatim-xenial nominatim:xenial
+  - docker build -t nominatim:trusty ./$RELEASE_VERSION/trusty
+  - docker run -d -p 8081:8080 -e NOMINATIM_PBF_URL=$NOMINATIM_PBF_URL --name nominatim-trusty nominatim:trusty
+  
 before_script:
   - npm install newman --global
 
