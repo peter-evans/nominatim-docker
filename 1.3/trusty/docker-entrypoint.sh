@@ -7,7 +7,7 @@ NOMINATIM_PBF_URL=${NOMINATIM_PBF_URL:="http://download.geofabrik.de/asia/maldiv
 
 
 # Retrieve the PBF file
-curl $NOMINATIM_PBF_URL --create-dirs -o $NOMINATIM_DATA_PATH/$NOMINATIM_DATA_LABEL.osm.pbf
+curl -L $NOMINATIM_PBF_URL --create-dirs -o $NOMINATIM_DATA_PATH/$NOMINATIM_DATA_LABEL.osm.pbf
 # Allow user accounts read access to the data
 chmod 755 $NOMINATIM_DATA_PATH
 
