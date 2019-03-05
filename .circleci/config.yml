@@ -57,8 +57,8 @@ jobs:
             docker create -v /etc/newman --name tests alpine:3.4 /bin/true
             docker cp tests/. tests:/etc/newman
             # Run tests
-            docker run --network container:nominatim jwilder/dockerize -wait http://localhost:8080/search -timeout 120s -wait-retry-interval 5s
-            docker run --network container:nominatim-trusty jwilder/dockerize -wait http://localhost:8080/search -timeout 120s -wait-retry-interval 5s
+            docker run --network container:nominatim jwilder/dockerize -wait http://localhost:8080/search -timeout 300s -wait-retry-interval 5s
+            docker run --network container:nominatim-trusty jwilder/dockerize -wait http://localhost:8080/search -timeout 300s -wait-retry-interval 5s
             docker run --network container:nominatim --volumes-from tests -t postman/newman:4.4.0-alpine run nominatim.postman_collection.json --environment="nominatim.postman_environment.json"
             docker run --network container:nominatim-trusty --volumes-from tests -t postman/newman:4.4.0-alpine run nominatim.postman_collection.json --environment="nominatim.postman_environment.json"
   publish-tag:
