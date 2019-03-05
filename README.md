@@ -1,19 +1,20 @@
 # nominatim-docker
 [![](https://images.microbadger.com/badges/image/peterevans/nominatim.svg)](https://microbadger.com/images/peterevans/nominatim)
 [![Build Status](https://travis-ci.org/peter-evans/nominatim-docker.svg?branch=master)](https://travis-ci.org/peter-evans/nominatim-docker)
+[![CircleCI](https://circleci.com/gh/peter-evans/nominatim-docker/tree/master.svg?style=svg)](https://circleci.com/gh/peter-evans/nominatim-docker/tree/master)
 
 Docker image for [Nominatim](https://github.com/openstreetmap/Nominatim), an open source tool to search OpenStreetMap data by name and address (geocoding) and to generate synthetic addresses of OSM points (reverse geocoding).
 
 ## Supported tags and respective `Dockerfile` links
 
-- [`1.3.1`, `1.3`, `latest`  (*1.3/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/1.3)
-- [`1.3.1-trusty`, `1.3-trusty`, `trusty`  (*1.3/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/1.3/trusty)
-- [`1.2.0`, `1.2` (*1.2/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/1.2)
-- [`1.2.0-trusty`, `1.2-trusty` (*1.2/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/1.2/trusty)
-- [`1.1.0`, `1.1` (*1.1/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/1.1)
-- [`1.1.0-trusty`, `1.1-trusty` (*1.1/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/1.1/trusty)
-- [`1.0.1`, `1.0` (*1.0/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/1.0)
-- [`1.0.1-trusty`, `1.0-trusty` (*1.0/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/1.0/trusty)
+- [`1.3.2`, `1.3`, `latest`  (*1.3/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master)
+- [`1.3.2-trusty`, `1.3-trusty`, `trusty`  (*1.3/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.3/trusty)
+- [`1.2.0`, `1.2` (*1.2/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.2)
+- [`1.2.0-trusty`, `1.2-trusty` (*1.2/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.2/trusty)
+- [`1.1.0`, `1.1` (*1.1/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.1)
+- [`1.1.0-trusty`, `1.1-trusty` (*1.1/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.1/trusty)
+- [`1.0.1`, `1.0` (*1.0/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.0)
+- [`1.0.1-trusty`, `1.0-trusty` (*1.0/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.0/trusty)
 
 ## Usage
 Pass the `NOMINATIM_PBF_URL` environment variable to the container referencing the URL of your PBF file:
