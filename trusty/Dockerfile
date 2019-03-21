@@ -1,7 +1,5 @@
 FROM ubuntu:trusty as builder
 
-MAINTAINER Peter Evans <pete.evans@gmail.com>
-
 ENV NOMINATIM_VERSION 3.2.0
 
 # Let the container know that there is no TTY
@@ -43,6 +41,15 @@ RUN cd /srv \
 
 
 FROM ubuntu:trusty
+
+LABEL \
+  maintainer="Peter Evans <mail@peterevans.dev>" \
+  org.opencontainers.image.title="nominatim:trusty" \
+  org.opencontainers.image.description="Docker image for Nominatim." \
+  org.opencontainers.image.authors="Peter Evans <mail@peterevans.dev>" \
+  org.opencontainers.image.url="https://github.com/peter-evans/nominatim-docker" \
+  org.opencontainers.image.vendor="https://peterevans.dev" \
+  org.opencontainers.image.licenses="MIT"
 
 # Let the container know that there is no TTY
 ARG DEBIAN_FRONTEND=noninteractive
