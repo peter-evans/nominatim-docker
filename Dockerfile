@@ -71,6 +71,7 @@ RUN apt-get -y update \
     php-db \
     php-intl \
     curl \
+    ca-certificates \
     sudo \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
