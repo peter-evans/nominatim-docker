@@ -7,8 +7,8 @@ Docker image for [Nominatim](https://github.com/openstreetmap/Nominatim), an ope
 
 ## Supported tags and respective `Dockerfile` links
 
-- [`1.3.3`, `1.3`, `latest`  (*1.3/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master)
-- [`1.3.3-trusty`, `1.3-trusty`, `trusty`  (*1.3/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.3/trusty)
+- [`1.3.4`, `1.3`, `latest`  (*1.3/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master)
+- [`1.3.4-trusty`, `1.3-trusty`, `trusty`  (*1.3/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.3/trusty)
 - [`1.2.0`, `1.2` (*1.2/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.2)
 - [`1.2.0-trusty`, `1.2-trusty` (*1.2/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.2/trusty)
 - [`1.1.0`, `1.1` (*1.1/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.1)
