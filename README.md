@@ -6,16 +6,16 @@ Docker image for [Nominatim](https://github.com/openstreetmap/Nominatim), an ope
 
 ## Supported tags and respective `Dockerfile` links
 
-- [`1.4.0`, `1.4`, `latest`  (*1.4/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master)
-- [`1.4.0-trusty`, `1.4-trusty`, `trusty`  (*1.4/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/trusty)
-- [`1.3.4`, `1.3` (*1.3/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.3)
-- [`1.3.4-trusty`, `1.3-trusty` (*1.3/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.3/trusty)
-- [`1.2.0`, `1.2` (*1.2/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.2)
-- [`1.2.0-trusty`, `1.2-trusty` (*1.2/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.2/trusty)
-- [`1.1.0`, `1.1` (*1.1/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.1)
-- [`1.1.0-trusty`, `1.1-trusty` (*1.1/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.1/trusty)
-- [`1.0.1`, `1.0` (*1.0/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.0)
-- [`1.0.1-trusty`, `1.0-trusty` (*1.0/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/master/archive/1.0/trusty)
+- [`1.5.0`, `1.5`, `latest`  (*1.5/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/v1.5.0)
+- [`1.5.0-trusty`, `1.5-trusty`, `trusty`  (*1.5/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/v1.5.0/trusty)
+- [`1.4.0`, `1.4`, `latest`  (*1.4/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/v1.4.0)
+- [`1.4.0-trusty`, `1.4-trusty`, `trusty`  (*1.4/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/v1.4.0/trusty)
+- [`1.3.4`, `1.3` (*1.3/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/v1.3.4)
+- [`1.3.4-trusty`, `1.3-trusty` (*1.3/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/v1.3.4/trusty)
+- [`1.2.0`, `1.2` (*1.2/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/v1.2.0)
+- [`1.2.0-trusty`, `1.2-trusty` (*1.2/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/v1.2.0/trusty)
+- [`1.1.0`, `1.1` (*1.1/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/v1.1.0)
+- [`1.1.0-trusty`, `1.1-trusty` (*1.1/trusty/Dockerfile*)](https://github.com/peter-evans/nominatim-docker/tree/v1.1.0/trusty)
 
 ## Usage
 Pass the `NOMINATIM_PBF_URL` environment variable to the container referencing the URL of your PBF file:
