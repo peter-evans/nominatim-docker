@@ -75,6 +75,7 @@ RUN apt-get -y update \
     php-pear \
     php-db \
     php-intl \
+    python3-dev \
     curl \
     ca-certificates \
     sudo \
