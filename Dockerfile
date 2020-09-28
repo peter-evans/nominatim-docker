@@ -72,6 +72,7 @@ RUN apt-get -y update \
     php \
     php-pgsql \
     libapache2-mod-php \
+    libboost-filesystem-dev \
     php-pear \
     php-db \
     php-intl \
