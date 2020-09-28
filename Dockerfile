@@ -1,4 +1,4 @@
-ARG nominatim_version=3.5.1
+ARG nominatim_version=3.5.2
 
 FROM ubuntu:xenial as builder
 
