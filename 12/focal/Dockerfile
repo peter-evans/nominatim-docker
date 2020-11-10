@@ -1,4 +1,4 @@
-ARG nominatim_version=3.5.1
+ARG nominatim_version=3.5.2
 
 FROM ubuntu:focal as builder
 
@@ -14,8 +14,7 @@ RUN apt-get -y update \
     cmake \
     g++ \
     libboost-dev \
-    libboost-system-dev \
-    libboost-filesystem-dev \
+    libboost-filesystem1.71-dev \
     libexpat1-dev \
     zlib1g-dev \
     libxml2-dev \
@@ -80,6 +79,7 @@ RUN apt-get -y update \
     python3-psycopg2 \
     curl \
     ca-certificates \
+    libboost-filesystem1.71-dev \
     sudo \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
