@@ -1,0 +1,23 @@
+name: Nominatim Image CI
+on:
+  push:
+    branches: master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        #- name: Build nominatim 9.5
+        #  run: docker build . --file 9.5/xenial/Dockerfile --tag jobvite/nominatim:9
+          #- name: Build nominatim 10
+        #  run: docker build . --file 10/bionic/Dockerfile --tag jobvite/nominatim:10
+      - name: Build nominatim 12
+        run: docker build . --file 12/focal/Dockerfile --tag jobvite/nominatim:12
+      - name: Run built container
+        run: docker run jobvite/nominatim:12
+      - name: Run test
+        run: docker run -it curlimages/curl:latest -s --retry 10 --retry-connrefused http://localhost:8080/search/20077?format=json
+
+
