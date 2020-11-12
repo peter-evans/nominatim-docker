@@ -1,0 +1,100 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+  pull_request:
+    branches:
+      - master
+env:
+  IMAGE_NAME: peterevans/nominatim
+  NOMINATIM_PBF_URL: http://download.geofabrik.de/asia/maldives-latest.osm.pbf
+jobs:
+  beforeBuild:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.vars.outputs.version }}
+      minor-version: ${{ steps.vars.outputs.minor-version }}
+      major-version: ${{ steps.vars.outputs.minor-version }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Determine version
+        id: vars
+        run: |
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+
+          # Use Docker `latest` tag convention
+          [ "$VERSION" == "master" ] && VERSION=latest
+
+          # Determine the minor and major versions
+          MINOR_VERSION=$(echo $VERSION | sed -n "s/^\([0-9]*.[0-9]*\).[0-9]*$/\1/p")
+          MAJOR_VERSION=$(echo $VERSION | sed -n "s/^\([0-9]*\).[0-9]*.[0-9]*$/\1/p")
+
+          # Set outputs
+          echo "::set-output name=version::$VERSION"
+          echo "::set-output name=minor-version::$MINOR_VERSION"
+          echo "::set-output name=major-version::$MAJOR_VERSION"
+
+  build:
+    needs: beforeBuild
+    name: build ${{ matrix.base-image }}
+    strategy:
+      matrix:
+        base-image: [xenial]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build and tag image
+        env:
+          VERSION: ${{ needs.beforeBuild.outputs.version }}
+          MINOR_VERSION: ${{ needs.beforeBuild.outputs.minor-version }}
+          MAJOR_VERSION: ${{ needs.beforeBuild.outputs.major-version }}
+        run: |
+          DEFAULT_TAG=$IMAGE_NAME:$VERSION-${{ matrix.base-image }}
+          docker build ${{ matrix.base-image }} --file ${{ matrix.base-image }}/Dockerfile --tag $DEFAULT_TAG --label "org.opencontainers.image.version=$VERSION"
+
+          # Tag with the application tag (nominatim version)
+          APP_TAG=$(docker inspect $DEFAULT_TAG | jq -r '. | first | .ContainerConfig.Labels."app.tag"')
+          docker tag $DEFAULT_TAG $IMAGE_NAME:$VERSION-${{ matrix.base-image }}-$APP_TAG
+
+          # Tag with the minor/major versions if valid
+          if [[ ${#MINOR_VERSION} -gt 0 ]]; then
+            docker tag $DEFAULT_TAG $IMAGE_NAME:$MINOR_VERSION-${{ matrix.base-image }}
+            docker tag $DEFAULT_TAG $IMAGE_NAME:$MINOR_VERSION-${{ matrix.base-image }}-$APP_TAG
+          fi
+          if [[ ${#MAJOR_VERSION} -gt 0 ]]; then
+            docker tag $DEFAULT_TAG $IMAGE_NAME:$MAJOR_VERSION-${{ matrix.base-image }}
+            docker tag $DEFAULT_TAG $IMAGE_NAME:$MAJOR_VERSION-${{ matrix.base-image }}-$APP_TAG
+          fi
+
+      - name: Output tags
+        run: |
+          docker images $IMAGE_NAME
+
+      - name: Test image
+        env:
+          VERSION: ${{ needs.beforeBuild.outputs.version }}
+        run: |
+          DEFAULT_TAG=$IMAGE_NAME:$VERSION-${{ matrix.base-image }}
+          docker run -d -e NOMINATIM_PBF_URL=$NOMINATIM_PBF_URL --name nominatim $DEFAULT_TAG
+          # Dummy container to store tests
+          docker create -v /etc/newman --name tests alpine:3.4 /bin/true
+          docker cp tests/. tests:/etc/newman
+          # Run tests
+          docker run --network container:nominatim jwilder/dockerize -wait http://localhost:8080/search -timeout 300s -wait-retry-interval 5s
+          docker run --network container:nominatim --volumes-from tests -t postman/newman:4.4.0-alpine run nominatim.postman_collection.json --environment="nominatim.postman_environment.json"
+
+      - name: Push image to Docker Hub
+        if: github.event_name == 'push'
+        run: |
+          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+          # temporarily disabled
+          # docker push $IMAGE_NAME
