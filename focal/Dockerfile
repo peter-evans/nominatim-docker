@@ -79,7 +79,8 @@ RUN apt-get -y update \
     python3-psycopg2 \
     curl \
     ca-certificates \
-    libboost-filesystem1.71-dev \
+    libboost-system1.71\
+    libboost-filesystem1.71 \
     sudo \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
