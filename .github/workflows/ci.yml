@@ -47,7 +47,7 @@ jobs:
     name: build ${{ matrix.base-image }}
     strategy:
       matrix:
-        base-image: [xenial]
+        base-image: [xenial, focal]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
