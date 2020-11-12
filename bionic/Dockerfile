@@ -81,6 +81,8 @@ RUN apt-get -y update \
     curl \
     ca-certificates \
     sudo \
+    libboost-system1.65.1\
+    libboost-filesystem1.65.1\
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && rm -rf /tmp/* /var/tmp/*
