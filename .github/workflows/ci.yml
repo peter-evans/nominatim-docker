@@ -17,7 +17,7 @@ jobs:
     outputs:
       version: ${{ steps.vars.outputs.version }}
       minor-version: ${{ steps.vars.outputs.minor-version }}
-      major-version: ${{ steps.vars.outputs.minor-version }}
+      major-version: ${{ steps.vars.outputs.major-version }}
     steps:
       - uses: actions/checkout@v2
 
