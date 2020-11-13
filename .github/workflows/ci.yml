@@ -5,9 +5,13 @@ on:
       - master
     tags:
       - v*
+    paths-ignore:
+      - 'README.md'
   pull_request:
     branches:
       - master
+    paths-ignore:
+      - 'README.md'
 env:
   IMAGE_NAME: peterevans/nominatim
   NOMINATIM_PBF_URL: http://download.geofabrik.de/asia/maldives-latest.osm.pbf
