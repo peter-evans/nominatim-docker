@@ -65,6 +65,9 @@ jobs:
           DEFAULT_TAG=$IMAGE_NAME:$VERSION-${{ matrix.base-image }}
           docker build ${{ matrix.base-image }} --file ${{ matrix.base-image }}/Dockerfile --tag $DEFAULT_TAG --label "org.opencontainers.image.version=$VERSION"
 
+          # Tag one of the base images to be the "latest"
+          [ "$VERSION" == "latest" ] && [ "${{ matrix.base-image }}" == "focal" ] && docker tag $DEFAULT_TAG $IMAGE_NAME:$VERSION
+
           # Tag with the application tag (nominatim version)
           APP_TAG=$(docker inspect $DEFAULT_TAG | jq -r '. | first | .ContainerConfig.Labels."app.tag"')
           docker tag $DEFAULT_TAG $IMAGE_NAME:$VERSION-${{ matrix.base-image }}-$APP_TAG
