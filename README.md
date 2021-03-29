@@ -28,7 +28,7 @@ Alternatively, you can mount a volume to /nominatimdata and specify the `NOMINAT
 
 ```bash
 docker run -d -p 8080:8080 \
--v /home/me/nominatim_data:/nominatimdata \
+-v /home/me/nominatimdata:/nominatimdata \
 -e NOMINATIM_PBF_FILE_NAME=data.osm.pbf \
 --name nominatim peterevans/nominatim:latest
 ```
