@@ -24,6 +24,15 @@ docker run -d -p 8080:8080 \
 ```
 The PBF file will be downloaded and the database will begin building. Note that very large databases may take hours to be built.
 
+Alternatively, you can mount a volume to /nominatimdata and specify the `NOMINATIM_PBF_FILE_NAME` environment variable.
+
+```bash
+docker run -d -p 8080:8080 \
+-v /home/me/nominatim_data:/nominatimdata \
+-e NOMINATIM_PBF_FILE_NAME=data.osm.pbf \
+--name nominatim peterevans/nominatim:latest
+```
+
 Tail the logs to verify the database has been built and Apache is serving requests:
 ```
 docker logs -f <CONTAINER ID>
